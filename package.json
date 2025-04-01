@@ -1,0 +1,27 @@
+{
+  "name": "patient_mgt_system",
+  "version": "1.0.0",
+  "description": "A fully functional backend system that:\r ● Manages data efficiently with proper database structures.\r ● Implements authentication and authorization for security.\r ● Handles API requests for seamless frontend communication.\r ● Ensures scalability and performance using best practices.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeniran-adebowale07/patient_mgt_system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adeniran-adebowale07/patient_mgt_system/issues"
+  },
+  "homepage": "https://github.com/adeniran-adebowale07/patient_mgt_system#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.5.0",
+    "typescript": "^5.8.2"
+  }
+}

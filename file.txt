@@ -1,0 +1,105 @@
+Tables for Patient Management
+
+Patients
+
+Doctors
+
+Appointments
+
+Departments
+
+Rooms
+
+Medical Records
+
+Billing
+
+Staff (Admin, Nurses, etc.)
+
+✅ Patient Management Database Schema
+1. Patients Table
+Column	Data Type	Description
+patient_id	INT (PK)	Unique ID for each patient
+first_name	VARCHAR	Patient's first name
+last_name	VARCHAR	Patient's last name
+date_of_birth	DATE	Date of birth
+gender	VARCHAR	Gender
+phone	VARCHAR	Contact number
+address	VARCHAR	Address
+registration_date	DATE	Date the patient registered
+
+2. Doctors Table
+Column	Data Type	Description
+doctor_id	INT (PK)	Unique ID for each doctor
+first_name	VARCHAR	Doctor's first name
+last_name	VARCHAR	Doctor's last name
+specialty	VARCHAR	Medical specialty
+phone	VARCHAR	Contact number
+email	VARCHAR	Email address
+department_id	INT (FK)	Linked to Departments table
+
+3. Departments Table
+Column	Data Type	Description
+department_id	INT (PK)	Unique ID for each department
+department_name	VARCHAR	Department name (e.g., Cardiology)
+location	VARCHAR	Floor or block information
+
+4. Appointments Table
+Column	Data Type	Description
+appointment_id	INT (PK)	Unique ID for the appointment
+patient_id	INT (FK)	Linked to Patients
+doctor_id	INT (FK)	Linked to Doctors
+appointment_date	DATETIME	Date and time of appointment
+reason	VARCHAR	Reason for the appointment
+status	VARCHAR	(Scheduled, Completed, Cancelled)
+
+5. Rooms Table
+Column	Data Type	Description
+room_id	INT (PK)	Unique room number
+room_type	VARCHAR	(ICU, General, Private)
+status	VARCHAR	(Occupied, Available)
+
+6. Admissions Table
+Column	Data Type	Description
+admission_id	INT (PK)	Unique ID for admission record
+patient_id	INT (FK)	Linked to Patients
+room_id	INT (FK)	Linked to Rooms
+admission_date	DATE	Admission date
+discharge_date	DATE	Discharge date (nullable)
+
+7. Medical Records Table
+Column	Data Type	Description
+record_id	INT (PK)	Unique record ID
+patient_id	INT (FK)	Linked to Patients
+doctor_id	INT (FK)	Linked to Doctors
+diagnosis	TEXT	Diagnosis details
+treatment	TEXT	Treatment given
+record_date	DATE	Record creation date
+
+8. Billing Table
+Column	Data Type	Description
+bill_id	INT (PK)	Unique billing ID
+patient_id	INT (FK)	Linked to Patients
+admission_id	INT (FK)	Linked to Admissions
+total_amount	DECIMAL	Total bill amount
+status	VARCHAR	(Paid, Unpaid, Pending)
+
+9. Staff Table (Non-Doctors)
+Column	Data Type	Description
+staff_id	INT (PK)	Unique staff ID
+first_name	VARCHAR	Staff first name
+last_name	VARCHAR	Staff last name
+role	VARCHAR	(Nurse, Receptionist, Technician, etc.)
+department_id	INT (FK)	Linked to Departments
+phone	VARCHAR	Contact number
+
+
+Patients → can have → Appointments, Medical Records, Admissions, Bills
+
+Doctors → belong to → Departments and create Medical Records and have Appointments
+
+Rooms → are used in → Admissions
+
+Staff → belong to → Departments
+
+Billing → is linked to Admissions and Patients
