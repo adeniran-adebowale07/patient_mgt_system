@@ -103,3 +103,25 @@ Rooms → are used in → Admissions
 Staff → belong to → Departments
 
 Billing → is linked to Admissions and Patients
+
+
+
+
+Models in Prisma Client
+Queries (CRUD)
+Every model in the data model definition will result in a number of CRUD queries in the generated Prisma Client API:
+
+findMany()
+findFirst()
+findFirstOrThrow()
+findUnique()
+findUniqueOrThrow()
+create()
+update()
+upsert()
+delete()
+createMany()
+createManyAndReturn()
+updateMany()
+updateManyAndReturn()
+deleteMany()

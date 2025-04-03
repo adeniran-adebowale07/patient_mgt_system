@@ -1,0 +1,164 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+model Doctor{
+doctorId Int        @id @default(autoincrement())
+firstname String
+middlename String?
+lastname String
+phone String
+email String @unique
+
+licenseNumber String
+
+
+medicalRecords MedicalRecord[]
+appointments Appointment[]
+prescriptions Prescription[]
+
+}
+
+
+model Patient{
+
+patientId         Int        @id @default(autoincrement())
+  email      String     @unique
+  firstName  String
+  middleName String?
+  lastName   String
+  nationalId  String @unique
+  gender String
+  dateOfBirth DateTime
+  contactnumber String
+
+  appointments Appointment[]
+prescriptions Prescription[]
+  medicalRecords MedicalRecord[]
+  // blogPosts  BlogPost[]
+  // Comment    Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("patients")
+
+
+}
+
+
+model Appointment{
+
+ appointmentID Int @id @default(autoincrement())
+     
+     appointmentDate DateTime
+    doctorsName String
+    appointmentType String
+    appointmentStatus String
+
+  doctor    Doctor  @relation(fields: [doctorId], references: [doctorId])
+  doctorId  Int
+  
+  patient   Patient @relation(fields: [patientId], references: [patientId ])
+  patientId Int
+
+    @@map("appointments")
+}
+
+
+
+model Prescription {   
+    prescriptionID Int @id @default(autoincrement())
+
+    doctor    Doctor  @relation(fields: [doctorId], references: [doctorId])
+  doctorId  Int
+   
+   patient   Patient @relation(fields: [patientId], references: [patientId ])
+    patientId Int //    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+    
+    appointmentId Int //FOREIGN KEY (AppointmentID) REFERENCES Appointments(AppointmentID),
+   
+    medicationName String
+    dose String
+    prescribedBy String
+    prescriptionDate DateTime
+
+    medicalRecord MedicalRecord? @relation(fields: [medicalRecordId], references: [recordId])
+  medicalRecordId Int?
+    @@map("prescriptions")
+
+}
+
+
+
+
+
+
+model MedicalRecord{
+recordId Int @id @default(autoincrement())
+
+
+
+
+
+doctor    Doctor  @relation(fields: [doctorid], references: [doctorId])
+doctorid	Int //(FK)	Linked to Doctors
+
+
+diagnosis	String //	Diagnosis details
+treatment	String //	Treatment given
+record_date	DateTime //	Record creation date
+
+patient   Patient @relation(fields: [patientId], references: [patientId])
+  patientId Int
+
+
+
+
+  prescriptions Prescription[]
+
+  @@map("medical_records")
+}
+
+
+
+
+model AppUser{
+
+
+userid Int @id @default(autoincrement())
+
+email String @unique
+password String
+firstname String
+middlename String?
+lastname String
+
+role  Role @default(POWER)
+
+
+  @@map("users")
+}
+
+
+
+enum Role{
+  SUPER
+  POWER
+  VIEWER
+
+}
