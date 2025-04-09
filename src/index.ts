@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth"
 import protectedRoutes from "./routes/protectedRoutes"
 import AppError from "./errors/AppError";
-import { errorHandler } from "../middlewares/errorHandler";
-import { authMiddleware } from "../middlewares/authMiddleware";
+import { errorHandler } from "./middlewares/errorHandler";
+import { authMiddleware } from "./middlewares/authMiddleware";
 import multer from "multer";
 import path from "path";
 
@@ -18,7 +18,7 @@ const upload = multer({ dest: "uploads/" })
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Blog System");
+  res.send("Patient Management System");
 });
 
 app.use("/uploads", express.static(path.join(__dirname, "../public/uploads/")))

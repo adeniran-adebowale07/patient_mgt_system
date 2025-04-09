@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import AppError from "../errors/AppError";
 import { verifyToken } from "../utils/jwt";
-import { PrismaClient, User } from ".prisma/client";
+import { PrismaClient, AppUser } from ".prisma/client";
 import { ProtectedRequest } from "../utils/types";
 import { asyncHandler } from "../utils/asyncHandler";
 
@@ -16,10 +16,10 @@ export const authMiddleware = asyncHandler(async (req: ProtectedRequest, res: Re
     const decoded = verifyToken(token);
     if (!decoded) throw new AppError("Invalid Authorization Token", 401)
 
-    const user = await prisma.user.findUnique({ where: { id: decoded.userId } });
+    const user = await prisma.appUser.findUnique({ where: { userid: decoded.userId } });
     if (!user) throw new AppError("User not found", 401);
 
     const { password, ...userWithoutPassword } = user
-    req.user = userWithoutPassword as User;
+    req.user= userWithoutPassword as AppUser;
     next();
 });

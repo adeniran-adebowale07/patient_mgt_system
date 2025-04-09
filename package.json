@@ -2,11 +2,11 @@
   "name": "patient_mgt_system",
   "version": "1.0.0",
   "description": "A fully functional backend system that:\r ● Manages data efficiently with proper database structures.\r ● Implements authentication and authorization for security.\r ● Handles API requests for seamless frontend communication.\r ● Ensures scalability and performance using best practices.",
-  "main": "src/index.ts",
+  "main": "dist/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "ts-node index.ts",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

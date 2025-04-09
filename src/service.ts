@@ -1,43 +1,41 @@
-import { Patient, PrismaClient } from '@prisma/client'
-import { create } from 'domain';
+import { PrismaClient, Role } from '@prisma/client'
+
 
 const prisma = new PrismaClient()
 
 
-
-
-async function getAllPatients() {
-    const result = await prisma.patient.findMany();
+async function getAllUsers() {
+    const result = await prisma.appUser.findMany();
     return result;
 }
 
 //READ
-async function findPatient(patientId: number) {
-    const patient = await prisma.patient.findUnique({
-        where: { patientId }
+async function findUser(id: number) {
+    const book = await prisma.appUser.findUnique({
+        where: { userid: id }
     })
-    return patient;
+    return book;
 }
 
 //CREATE
-async function createPatient(patient: Patient) {
-    return await prisma.patient.create({
-        data: { ...patient }
+async function createUser(email: string, password: string, firstname: string, lastname: string, role :Role) {
+    return await prisma.appUser.create({
+        data: { email, password, firstname, lastname, role: role || "POWER"  }
     })
 }
 
 //DELETE
-async function deletePatient(patientId: number) {
-    await prisma.patient.delete({
-        where: { patientId }
+async function deleteUser(id: number) {
+    await prisma.appUser.delete({
+        where: { userid: id }
     });
 }
 
 //UPDATE
-async function updatePatientRecord(patientId: number, patientInfo : Patient) {
-    return await prisma.patient.update({
-        where: { patientId },
-        data: { ...patientInfo }
+async function updateUser(id: number, newEmail: string) {
+    return await prisma.appUser.update({
+        where: { userid: id },
+        data: { email: newEmail}
     })
 }
 
