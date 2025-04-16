@@ -49,7 +49,7 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<any> 
     //Hash Password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, 1)
-
+    console.log(firstName+ "---"+ lastName+ "---"+ middleName+ "---"+email+ "---"+hashedPassword);
     //Save User
     const user = await prisma.appUser.create({
         data: {
@@ -81,10 +81,13 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<any> => 
     if (!passwordIsValid) {
         throw new AppError("Password is incorrect", 401);
     }
-
+    console.log(email+ "---"+password);
     const response = getAuthResponse(user, "User Login Successful")
     return res.status(200).json(response);
 })
+
+
+
 
 export default {
     register, login
