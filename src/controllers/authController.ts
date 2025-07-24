@@ -22,6 +22,12 @@ type LoginRequestInput = {
     password: string
 }
 
+type updatePassword = {
+    email: string,
+    oldPassword: string,
+    newPassword: string
+}
+
 const getAuthResponse = (user: AppUser, message?: string): AuthResponse => {
     const { password: _, ...userWithoutPassword } = user;
     const token = generateToken(user.userid);
@@ -49,7 +55,7 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<any> 
     //Hash Password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, 1)
-    console.log(firstName+ "---"+ lastName+ "---"+ middleName+ "---"+email+ "---"+hashedPassword);
+    // console.log(firstName+ "---"+ lastName+ "---"+ middleName+ "---"+email+ "---"+hashedPassword);
     //Save User
     const user = await prisma.appUser.create({
         data: {
@@ -81,14 +87,42 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<any> => 
     if (!passwordIsValid) {
         throw new AppError("Password is incorrect", 401);
     }
-    console.log(email+ "---"+password);
+    // console.log(email+ "---"+password);
     const response = getAuthResponse(user, "User Login Successful")
     return res.status(200).json(response);
 })
 
+const updatePassword = asyncHandler(async (req: Request, res: Response): Promise<any> => {
+    const { email, oldPassword, newPassword }: updatePassword = req.body;
 
+    if (!email || !oldPassword || !newPassword) {
+        throw new AppError("Please input required (email, oldPassword, newPassword) fields", 400);
+    }
+
+    //Check if user exists
+    const user = await prisma.appUser.findUnique({ where: { email } })
+    if (!user) {
+        throw new AppError("Not a Registered User", 401);
+    }
+
+    //Check if password is correct
+    const passwordIsValid = await bcrypt.compare(oldPassword, user.password)
+    if (!passwordIsValid) {
+        throw new AppError("Old Password is incorrect, Kindly Contact Your Administrator", 401);
+    }
+    // console.log(email+ "---"+password);
+    const hashedPassword = await bcrypt.hash(newPassword, 1);
+    const updateResult =await prisma.appUser.update({
+        where: {userid: user.userid},
+            data:{password: hashedPassword}
+        
+    })
+
+    const response = getAuthResponse(updateResult, "User Registration Successful")
+    return res.status(201).json(response);
+})
 
 
 export default {
-    register, login
+    register, login, updatePassword
 }

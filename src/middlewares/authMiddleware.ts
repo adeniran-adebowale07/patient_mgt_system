@@ -14,6 +14,7 @@ export const authMiddleware = asyncHandler(async (req: ProtectedRequest, res: Re
     if (!token) throw new AppError("Token not found", 401);
 
     const decoded = verifyToken(token);
+    console.log(decoded );
     if (!decoded) throw new AppError("Invalid Authorization Token", 401)
 
     const user = await prisma.appUser.findUnique({ where: { userid: decoded.userId } });

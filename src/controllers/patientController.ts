@@ -2,6 +2,7 @@ import { Response } from "express"
 import { asyncHandler } from "../utils/asyncHandler"
 import { ProtectedRequest } from "../utils/types"
 import AppError from "../errors/AppError";
+import moment from "moment";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient()
@@ -41,9 +42,9 @@ const getPatient = asyncHandler(async (req: ProtectedRequest, res: Response) => 
 })
 
 const createPatientInfo = asyncHandler(async (req: ProtectedRequest, res: Response) => {
-    const { firstname, middlename,lastname, email,  nationalId, gender, dateofbirth, contactnumber  } = req.body;
+    const { firstname, middlename,lastname, email,  nationalId, gender,  contactnumber  } = req.body;
 
-    
+    const dateofbirth =moment(req.body.dateofbirth,'YYYY-MM-DD').toDate();
 
     if (!lastname || !firstname || !nationalId || !gender || !dateofbirth || !contactnumber ||!email ) throw new AppError("Ensure title and content are provided", Number(process.env.INCOMPLETE_RECORD));
 
