@@ -1,0 +1,29 @@
+Look through Rwanda and thorough  review the events that come in from WithSecure
+
+Go through the sentinels and summarize the kind of events thrown in the last 90 days
+
+Cross reference to see if more EDR detections is needed 
+
+Look through the analytical rules for their WIthSecure and determine optimization optimize
+
+The different activities for the different actions.
+determine which one to trigger alert for 
+
+Determine if scope will be expanded or reduced on analytical rules
+
+==================================================================================
+WithSECURE Incidents
+Application Control event
+System event
+Browsing Protection event
+Network connection event
+Web Content Control event
+Device Control event
+Setting event
+Email scanning event
+File Scanning event
+Endpoint Detection and Response (EDR) event
+product
+DeepGuard event
+Tamper Protection event
+=========================================
