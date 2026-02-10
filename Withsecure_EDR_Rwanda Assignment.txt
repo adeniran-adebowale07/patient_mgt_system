@@ -27,3 +27,27 @@ product
 DeepGuard event
 Tamper Protection event
 =========================================
+Application Control
+SHA
+Target file control
+Description
+
+Tamper Protection
+details_intiator
+details_SHA
+
+
+
+In EDR Detection of Potential Risk
+remove category
+add Server to "Risk"
+
+EDR Email Detection
+-Rename to "Critical EDR Detection"
+
+
+WebContentcontentcontrol & Browser Protection
+-extract the process
+-IP address
+
+File Scanning
