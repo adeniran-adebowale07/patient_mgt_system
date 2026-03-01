@@ -27,6 +27,11 @@ product
 DeepGuard event
 Tamper Protection event
 =========================================
+
+
+Assignment
+Extract the following
+
 Application Control
 SHA
 Target file control
@@ -40,14 +45,12 @@ details_SHA
 
 In EDR Detection of Potential Risk
 remove category
-add Server to "Risk"
+add "Severity" to "Risk"
 
 EDR Email Detection
 -Rename to "Critical EDR Detection"
 
 
-WebContentcontentcontrol & Browser Protection
+Web Content control & Browser Protection
 -extract the process
 -IP address
-
-File Scanning
