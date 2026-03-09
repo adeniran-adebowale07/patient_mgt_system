@@ -1,0 +1,82 @@
+Course Title: Before the Console: Mindset & Foundations for Future SOC Analysts
+
+Total Time: 2 hours
+Target Audience: Aspiring SOC Analysts (Career changers, students, IT pros looking to pivot)
+Goal: To build the fundamental IT knowledge, critical thinking habits, and personal projects that will help them get hired.
+
+---
+
+Part 1: The "How" Before the "What" (25 mins)
+
+· (5 mins) Welcome & The Goal
+  · Instructor introduction: From "civilian" to analyst.
+  · The reality: You don't need to be a hacker yet. You need to be a curious investigator.
+  · Objective: Bridge the gap between "I want to be in security" and "I am ready for an interview."
+· (20 mins) The Analyst Mindset (Soft Skills)
+  · Curiosity: The difference between "The alert fired" and "Why did it fire?"
+  · Attention to Detail: Spotting the anomaly in the noise (e.g., a 1 vs a l in a domain name).
+  · Written Communication: You will live in a ticketing system. Practice writing clear, concise English. (Exercise: Describe what you did last weekend in 3 sentences without emotion).
+  · Humility: You will be wrong. You will close false positives. Learning to admit you don't know and ask for help is a strength.
+
+---
+
+Part 2: The IT Prerequisites (What you must know) (45 mins)
+
+· (15 mins) Networking Fundamentals (The Traffic)
+  · The OSI Model in Practice: Don't memorize the numbers, understand the layers. (IP is the address, TCP/UDP is the delivery method, HTTP/HTTPS is the language).
+  · Core Protocols:
+    · DNS: The phonebook of the internet. (Why do attackers love messing with it?)
+    · HTTP/HTTPS: The web. Understanding the difference between a GET request and a POST request (uploading data).
+    · Ports: Not just numbers. 22=SSH (admin), 3389=RDP (remote desktop), 443=HTTPS (web).
+  · Analogy: The network is the road system. You need to know the roads before you can spot the getaway car.
+· (15 mins) Operating Systems (The Cars)
+  · Windows: The most common target. Understand the difference between a Process (an app running) and a Service (running in the background). What is svchost.exe?
+  · Linux: The backbone of servers. You don't need to be a sysadmin, but you need to be comfortable looking at a command line.
+  · File Systems: Where do things live? (e.g., Windows: Temp folders are often hiding spots for malware).
+· (15 mins) Core Security Concepts
+  · The CIA Triad:
+    · Confidentiality: Keeping secrets secret (Encryption).
+    · Integrity: Making sure data isn't tampered with (Hashing).
+    · Availability: Making sure it's there when you need it (Backups/DDOS).
+  · The Difference:
+    · Vulnerability: A hole in the wall (a missing patch).
+    · Threat: Someone looking for a hole (a hacker).
+    · Risk: The chance that someone finds the hole and crawls through.
+
+---
+
+Part 3: Building Your Arsenal (Personal Projects) (30 mins)
+
+· (10 mins) Setting Up a Home Lab
+  · Why: You cannot defend what you do not understand.
+  · The Setup:
+    · VirtualBox/VMware: Free software to run "pretend" computers.
+    · The Targets: Install a old Windows 10 VM and a Linux (Ubuntu) VM.
+    · The Looker: Install Wireshark to "see" the network traffic these VMs create.
+  · Task: Just watch what your own computer does when you open Google.com in Wireshark.
+· (10 mins) Learning to Google (The Real Skill)
+  · The Problem: You will see errors you don't recognize 100 times a day.
+  · The Skill:
+    · How to copy/paste an error message effectively.
+    · How to filter results by date (recent articles are often better).
+    · How to use " quotes " to search for exact strings.
+  · Exercise: "I just saw Event ID 4688 on my PC. What does that mean?" (Spoiler: It means a process started).
+· (10 mins) Resources for Continuous Learning
+  · Free Stuff: TryHackMe (SOC Fundamentals path), YouTube (John Hammond, IppSec), MITRE ATT&CK framework (the "encyclopedia" of hacker behavior).
+  · Follow the News: Why reading breach reports (Uber, LastPass, MGM) is like reading case studies for your future job.
+
+---
+
+Part 4: The Roadmap (20 mins)
+
+· (10 mins) Certifications vs. Experience
+  · Entry Level: Security+ (Great for HR filters), CySA+ (More analyst focused).
+  · The Catch: A certificate gets the interview; a home lab and curiosity get the job.
+  · Mapping Skills: How the IT stuff we discussed (Networking, OS) maps directly to SOC work.
+· (10 mins) Q&A & Final Advice
+  · Open floor for questions.
+  · Call to Action:
+    1. Install VirtualBox tonight.
+    2. Create a free TryHackMe account and do the "Pre-Security" path.
+    3. Write down one thing you learned today and research it further.
+  · Handout: "The Aspiring SOC Analyst Reading List" (Links to blogs, podcasts, and free labs).
