@@ -1,0 +1,8 @@
+M365 prerequisite
+-M365 apps for enterprise
+-Ms Entra-based acct
+-Onedrive Accounts
+
+
+
+https://learn.microsoft.com/en-us/credentials/applied-skills/prepare-security-and-compliance-to-support-microsoft-365-copilot/?source=learn
