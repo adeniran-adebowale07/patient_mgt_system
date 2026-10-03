@@ -1,0 +1,20 @@
+This incident has been merged with incident #29497 because the two incidents describe parts of a single attack story. This incident is now closed.
+
+SPO
+The file could not be modified because it was blocked by SPO policy No threat Found
+
+
+Summary report of all failed login attempts which occurred within the specified time
+
+
+The files downloaded were reviewed and confirmed to be within the acceptable use policy. All the download activities occurred on managed devices and no exfiltration was detected
+
+The request from the malicious IP was blocked by the firewall
+
+The use of USB devices is already restricted on company-managed devices in accordance with the organization's security policy.
+
+
+The flagged account is a legitimate service account. The login attempt is legitimate
+
+
+The use of USB drives is already restricted on company devices as per security policy or Attempted USB device connection detected. Device was automatically blocked by endpoint controls, no data transfer occurred. USB device has been disabled across all devices. Alert closed as expected security control in action
