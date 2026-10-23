@@ -18,3 +18,10 @@ The flagged account is a legitimate service account. The login attempt is legiti
 
 
 The use of USB drives is already restricted on company devices as per security policy or Attempted USB device connection detected. Device was automatically blocked by endpoint controls, no data transfer occurred. USB device has been disabled across all devices. Alert closed as expected security control in action
+
+
+The role assignment was done on PIM and it is in accordance with role assignment activities for authorized IT Admins
+
+The change was carried out by the legitimate administrator justin.kaneza@abr.rw, and no suspicious or unauthorized activity was identified in relation to the credential addition. The event was therefore assessed as legitimate administrative activity and was not escalated as a security incident.
+
+

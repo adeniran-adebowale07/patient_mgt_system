@@ -1,0 +1,66 @@
+Intro to DevOps
+DevOps is a set of practices, cultural philosophies, and tools that unite software Development (Dev) and IT Operations (Ops) into a single, continuous workflow
+
+code -> Build -> Test -> Release -> Deploy -> Operate -> Monitor -> Plan 
+
+CI/CD (Continuous Integration / Continuous Delivery): Automatically builds, tests, and prepares code changes for production.
+Infrastructure as Code (IaC): Manages and provisions servers and networks using configuration files instead of manual setups.
+Automation: Streamlines repetitive tasks across testing, deployment, and scaling.
+Observability & Monitoring: Tracks performance metrics and application logs to ensure system health.
+DevSecOps: Integrates security checks early into the development pipeline rather than treating security as a final review step
+DevOps practices
+A couple of key practices make DevOps what it is. These include:
+
+
+Continuous testing: Continuous testing is a process that aims to increase software development efficiency by testing and incorporating automated feedback throughout the software development lifecycle (SDLC). Deploying all code changes to a testing environment after the build stage helps track bugs before they cause larger issues.
+
+Continuous integration (CI): Continuous integration means feedback from stakeholders and fixes are integrated into a product continually. This can mean both automating processes in which fixes are integrated and creating a culture in which continuous integration happens.
+
+Continuous delivery (CD): Continuous delivery is when changes to a product (likely code) are integrated automatically. This method of rapid delivery ensures that the product is always in a deployable state. This means that code can be deployed in short time frames (daily, weekly, and so on).
+
+
+
+THREAT VECTORS
+-Privileged credential hijack-
+a cyberattack where an unauthorized actor steals, intercepts, or takes control of high-level administrative or service credentials (such as admin usernames, passwords, API keys, or OAuth tokens) to gain unrestricted access to critical systems and data
+-Extension Application vulnerabilities 
+security flaws or design weaknesses in software add-ons, plugins, or extensions (such as those in web browsers like Google Chrome or Microsoft Edge, or development environments like IDEs) that allow attackers to bypass security controls, steal data, or execute unauthorized cod
+-Dependency Vulnerabilities
+a security weakness or flaw hidden inside a third-party library, package, or framework that an application relies on to function
+-Remote connection hacks
+Remote connection hacking is the unauthorized practice of accessing, monitoring, or controlling a computer, server, or private network from an external location
+
+-Privilege escalation
+a cyberattack technique where a user or threat actor gains elevated access rights and administrative control over a system or network by exploiting security vulnerabilities, bugs, or misconfigurations. This could be vertical or horizontal
+-malware intrusion
+the unauthorized entry and installation of malicious software into a computer system, network, or device to steal data, disrupt operations, or damage infrastructure
+
+
+An Azure landing zone subscription is a pre-configured cloud environment container that follows enterprise best practices for security, identity, networking, and governance before any workloads or applications are deployed
+
+
+DevSecOps (development, security, and operations) is an approach to software development that makes security a shared responsibility and integrates it into every phase of the software development lifecycle (SDLC)
+
+
+Core Concepts
+
+• Shift Left: Moving security testing and analysis to the earliest stages of planning and coding so developers can catch and fix vulnerabilities immediately.
+• Shared Responsibility: Breaking down traditional silos so developers, security experts, and IT operations teams work together from day one.
+• Automation: Using automated tools within pipelines to scan code, dependencies, and infrastructure without slowing down fast release cycles.
+
+Key DevSecOps Practices & Tools
+
+• Static Application Security Testing (SAST): Scans source code for vulnerabilities early (using tools like SonarQube or Veracode).
+• Software Composition Analysis (SCA): Checks open-source components and third-party libraries for known security flaws.
+• Dynamic Application Security Testing (DAST) / IAST: Tests running applications for security risks and misconfigurations (using tools like OWASP ZAP).
+• Infrastructure as Code (IaC) & Container Scanning: Ensures cloud environments and Docker containers are securely configured before deployment.
+
+
+Threat Modeling a structured, proactive approach to identifying, analyzing, and prioritizing potential security risks, design flaws, and vulnerabilities in software or IT systems before an attacker can exploit them
+
+Change Impact Analysis (CIA)—also called a Change Impact Assessment—is a systematic process used to identify, evaluate, and document the consequences of a proposed or actual change before or during its implementation
+It compares the current state (AS-IS) against the future state (TO-BE) to understand what is shifting, who is affected, and what risks or disruptions might occur
+
+RASP is Runtime Application Self-Protection is a security technology that runs inside a software application or its runtime environment to monitor behavior, detect attacks in real time, and block threats automatically
+
+WAF inspect external HTTP/HTTPS traffic at the network edge before it reaches the app
