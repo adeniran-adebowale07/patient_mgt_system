@@ -1,0 +1,108 @@
+Good day.
+Following our investigation into the reported high volume of MFA-related SMS messages and unusual Microsoft 365 sign-in activity, we reviewed Microsoft Entra authentication logs for the affected period. (the last 7 days(
+Our findings and responses to the questions raised are outlined below.
+1. Why is Single-Factor Authentication being allowed for these users?
+The authentication logs show that the affected sign-ins used Microsoft Entra SMS Sign-in.
+SMS Sign-in is different from SMS being used as a second factor for MFA. It allows an enabled user to authenticate using the SMS OTP as the primary authentication method and is therefore recorded by Microsoft Entra as Single-Factor Authentication.
+Within the reviewed dataset, we identified:
+18 distinct successful SMS Sign-in authentication steps
+14 affected user accounts
+16 unique correlation IDs
+33 associated sign-in/resource records
+For the reviewed successful events, the logs consistently recorded:
+Authentication Method: SMS Sign-in
+Authentication Result: Succeeded
+Authentication Requirement: singleFactorAuthentication
+ResultType: 0 – successful
+Conditional Access Status: notApplied
+Conditional Access Policies: []
+The Single-Factor Authentication classification is therefore consistent with the use of SMS Sign-in and, by itself, does not indicate that MFA was technically bypassed.
+The more significant finding is that Conditional Access was not applied to these successful authentication events.
+The exact reason why Conditional Access did not apply cannot be determined from the sign-in event alone. The Conditional Access policy configuration, user/group targeting, application scope, exclusions, conditions and policy enforcement state therefore require validation.
+2. What IP addresses were involved, and are they associated with suspicious activity?
+Successful SMS Sign-in activity was observed from multiple external IP addresses and geographically diverse locations.
+Examples include:
+190.104.124.253 – Guatemala
+171.97.59.8 – Thailand
+176.48.57.254 – Russia
+206.42.67.16 – Democratic Republic of Congo
+188.253.220.190 – Azerbaijan
+178.163.144.68 – Belarus
+89.19.113.80 – Ukraine
+196.64.113.107 – Morocco
+131.161.86.229 – Sint Maarten
+46.39.102.204 – Sweden
+156.255.216.18 – Venezuela
+212.47.135.161 – Azerbaijan
+The geographic distribution is unusual for the affected tenant and should be validated against known employee travel, VPN usage, roaming/mobile carrier infrastructure and approved corporate access locations.
+Geolocation alone is not sufficient to classify an IP address as malicious. Threat-intelligence reputation checks and user confirmation are required before attributing individual IP addresses to an attacker.
+3. Why were certain successful sign-ins not challenged with MFA?
+For the successful SMS Sign-in events reviewed, Conditional Access was recorded as:
+ConditionalAccessStatus = notApplied
+and:
+ConditionalAccessPolicies = []
+This confirms that no Conditional Access policy is listed as having been applied to those particular sign-in records.
+Consequently, after successful SMS Sign-in authentication, there was no applicable Conditional Access requirement in those records forcing an additional MFA challenge.
+This does not yet establish why the policies were not applied. Possible causes that must be validated from the tenant configuration include:
+user or group exclusions;
+applications/resources outside the policy scope;
+Conditional Access policies configured in Report-only mode;
+policies that were disabled;
+authentication conditions that did not match the sign-in;
+other Conditional Access targeting or configuration differences.
+A review of the Conditional Access configuration and Microsoft Entra "What If" / Troubleshoot Event results is therefore required to establish the precise cause.
+4. Is there evidence of compromised accounts or unauthorized access?
+The logs confirm that successful SMS Sign-in authentication occurred for multiple accounts from geographically unusual external IP addresses.
+However, the authentication records alone are not sufficient to conclude that every affected account was compromised.
+The key distinction is whether the legitimate user actually initiated and completed the SMS Sign-in.
+For affected users, we recommend confirming:
+Did the user initiate a Microsoft sign-in at the recorded time?
+Did the user receive an SMS authentication code?
+Did the user enter or approve the received code?
+Was the user travelling or connected through a VPN at the time?
+Does the source IP/device correspond with their normal activity?
+Where a user confirms that they did not initiate or complete the SMS authentication, the successful SMS Sign-in should be treated as unauthorized authentication and the account investigated as potentially compromised.
+Where users only received unsolicited SMS messages but did not enter the codes, this supports attempted authentication activity but does not by itself establish successful account access.
+Post-authentication Microsoft 365 and Azure activity is also being reviewed to determine whether successful authentication was followed by unauthorized mailbox, SharePoint, administrative or Azure resource activity.
+5. Is there evidence of a Microsoft 365 / MFA zero-day vulnerability?
+At this stage, we have identified no evidence indicating exploitation of a Microsoft 365 MFA zero-day vulnerability.
+The observed authentication behaviour currently has a documented technical explanation:
+SMS Sign-in is enabled as a valid first-factor authentication method;
+successful SMS Sign-in events are therefore recorded as Single-Factor Authentication;
+Conditional Access was not applied to the successful events reviewed.
+No evidence reviewed so far demonstrates that Microsoft MFA enforcement was technically circumvented through an unknown vulnerability.
+We will continue to distinguish between a Microsoft platform vulnerability and tenant authentication/Conditional Access configuration as additional evidence is validated.
+
+Additional tenant-side evidence required
+The following cannot be conclusively established using KQL alone and should be investigated internally.
+Authentication Methods → SMS
+whether SMS Sign-in is enabled;
+targeted users/groups;
+any excluded groups.
+Conditional Access policies
+policy name;
+Enabled / Report-only / Disabled state;
+included and excluded users/groups;
+target resources;
+locations;
+client applications;
+grant controls;
+authentication strength/MFA requirements.
+Troubleshoot Event
+Run against representative successful notApplied events using their correlation IDs.
+Registered authentication methods
+Confirm the telephone number associated with SMS Sign-in for affected users and verify ownership with the users.
+User validation
+Obtain confirmation from affected users on whether the recorded authentication was initiated and whether an SMS code was entered.
+Recommended immediate controls
+Pending completion of the investigation, we recommend:
+reviewing whether SMS Sign-in is operationally required and disabling it for users who do not require the method;
+ensuring MFA/appropriate authentication strength is enforced through Conditional Access for all required users and applications;
+moving relevant Conditional Access controls from Report-only to enforced mode after impact testing;
+reviewing exclusions from MFA policies;
+revoking active sessions and resetting authentication credentials/methods for accounts where activity is confirmed as unauthorized;
+restricting access from unapproved countries where this aligns with business requirements;
+prioritising phishing-resistant authentication methods such as FIDO2/passkeys or Microsoft Authenticator;
+monitoring repeated SMS authentication attempts and unusual geographic sign-ins.
+Based on the evidence reviewed so far, the activity warrants further investigation; however, there is currently insufficient evidence to classify the incident as exploitation of an MFA zero-day or to conclude that every affected account was compromised.
+We will update the findings once the Conditional Access configuration, user validation and post-authentication activity have been reviewed.
